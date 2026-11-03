@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>NDD CES MP 2026 · Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0B5563;--teal-l:#EAF3F4;--orange:#E89B2C;--orange-l:#FBEBD3;--ink:#1F2A30;--muted:#5B7F86;--line:#D9E8EA;--red:#C0392B;--green:#2E8B57;--bg:#FFFFFF;--card:#F6F8F8}
+@media (prefers-color-scheme: dark){:root{--teal:#5FB7C4;--teal-l:#163238;--orange:#F0B05A;--orange-l:#3A2C17;--ink:#E7EEF0;--muted:#9FB8BD;--line:#2A4248;--bg:#0F1A1D;--card:#162428;--red:#E27467;--green:#5BBE88}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Noto Sans","Noto Sans Devanagari",system-ui,sans-serif}
+.hi{font-family:"Noto Sans Devanagari","Noto Sans",sans-serif}
+header{background:#0B5563;color:#fff;padding:28px 16px 22px}
+header .wrap,main,footer .wrap{max-width:980px;margin:0 auto}
+header h1{font-family:"Noto Serif",Georgia,serif;font-size:clamp(24px,4.5vw,36px);margin:4px 0 6px;line-height:1.2}
+header p{margin:0;color:#D9E8EA}
+.date{display:inline-block;margin-top:14px;background:#E89B2C;color:#1F2A30;font-weight:700;padding:6px 12px;border-radius:6px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+nav .wrap{max-width:980px;margin:0 auto;padding:0 8px}
+nav a{display:inline-block;padding:11px 10px;color:var(--teal);text-decoration:none;font-weight:600;font-size:14px}
+main{padding:8px 16px 40px}
+section{padding-top:26px}
+h2{font-family:"Noto Serif",Georgia,serif;color:var(--teal);font-size:24px;margin:0 0 4px}
+h2::after{content:"";display:block;width:56px;height:4px;background:var(--orange);margin-top:8px;border-radius:2px}
+h3{margin:0 0 6px;font-size:17px;color:var(--teal)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card.hl{background:var(--teal-l)}
+.card .who{color:var(--muted);font-size:14px;margin:0 0 10px}
+.btn{display:inline-block;margin:4px 8px 0 0;padding:7px 12px;border-radius:6px;background:var(--teal);color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+@media (prefers-color-scheme: dark){.btn{color:#0F1A1D}}
+.btn.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+ol.steps,ul.ticks{padding-left:0;list-style:none;margin:12px 0 0}
+ol.steps{counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:8px 0 8px 44px;border-bottom:1px solid var(--line)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:7px;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#1F2A30;font-weight:700;display:flex;align-items:center;justify-content:center}
+ul.ticks li{position:relative;padding:6px 0 6px 30px}
+ul.ticks li::before{content:"✓";position:absolute;left:4px;color:var(--green);font-weight:700}
+.callout{margin-top:14px;background:var(--orange-l);border-left:5px solid var(--orange);padding:10px 14px;border-radius:6px;font-weight:600}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-top:10px}
+summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--teal);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--orange)}
+details[open] summary::before{content:"▾ "}
+details .in{padding:0 16px 14px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-size:13px;font-weight:600}
+.two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.do h3{color:var(--green)} .dont h3{color:var(--red)}
+.script{background:var(--teal-l);border-radius:8px;padding:10px 12px;margin:8px 0}
+.lists{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
+.lists span{width:30px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;font-size:13px;font-weight:700}
+.on{background:var(--teal);color:#fff} .off{background:transparent;color:var(--muted);border:1px solid var(--line);text-decoration:line-through;font-weight:400!important}
+@media (prefers-color-scheme: dark){.on{color:#0F1A1D}}
+.log td:first-child{white-space:nowrap;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:18px 16px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div style="font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:#E89B2C;font-weight:700">Independent NDD Coverage Evaluation Survey · Madhya Pradesh</div>
+  <h1>Training materials for survey teams and nodal officers</h1>
+  <p>AIIMS Bhopal with the Community Medicine departments of Khandwa, Chhindwara, Ratlam and Shahdol medical colleges · NHM MP · WHO</p>
+  <div class="date">Online training: Wednesday, 4 November 2026</div>
+</div></header>
+<nav><div class="wrap">
+  <a href="#before">Before training</a><a href="#materials">Materials</a><a href="#quick">Quick reference</a><a href="#practice">Practice &amp; Diwali</a><a href="#districts">Districts</a><a href="#faq">FAQ</a><a href="#updates">Updates</a>
+</div></nav>
+<main>
+
+<section id="before">
+  <h2>Before the training</h2>
+  <p>Please get these ready before the session. The joining link is shared by your nodal officer.</p>
+  <div class="two">
+    <div class="card">
+      <h3>Your phone</h3>
+      <ul class="ticks">
+        <li>An <b>Android</b> phone (ODK Collect does not run on iPhone)</li>
+        <li><b>ODK Collect</b> installed from the Play Store (publisher: Get ODK Inc.)</li>
+        <li>Battery charged; at least 1 GB free</li>
+        <li>Date and time set to <b>automatic</b>; Location (GPS) on</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Your team code</h3>
+      <ul class="ticks">
+        <li>Each pair has one QR code, e.g. <b>ratlam01</b> (team 1)</li>
+        <li>Your nodal officer sends it to you <b>privately</b>; it is never posted here or in groups</li>
+        <li>Both phones of the pair scan the same code</li>
+        <li>Download Manual 1 below and keep it on your phone</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <h2>Training materials</h2>
+  <p>All files are PDFs. Open them on your phone or download them.</p>
+  <div class="grid">
+    <div class="card hl"><h3>Manual 1 · Survey teams</h3><p class="who">For every team member: segmenting, List A/B, household form, F4, F10, sending data</p>
+      <a class="btn" href="docs/Manual_1_Survey_Teams.pdf">Open</a><a class="btn ghost" href="docs/Manual_1_Survey_Teams.pdf" download>Download</a></div>
+    <div class="card hl"><h3>List A / List B cards</h3><p class="who">Print on A4 and laminate; two per pair. Coloured numbers are visited, grey ones skipped</p>
+      <a class="btn" href="docs/List_A_B_cards.pdf">Open</a><a class="btn ghost" href="docs/List_A_B_cards.pdf" download>Download</a></div>
+    <div class="card"><h3>Manual 2 · Nodal officers</h3><p class="who">Pairs, scheduling, observation (F9), back-checks (F8), F4 sign-off, daily report</p>
+      <a class="btn" href="docs/Manual_2_Nodal_Officers.pdf">Open</a><a class="btn ghost" href="docs/Manual_2_Nodal_Officers.pdf" download>Download</a></div>
+    <div class="card"><h3>Training deck</h3><p class="who">Design, sampling, forms, record verification, quality assurance, analysis</p>
+      <a class="btn" href="docs/Training_deck_v1.3.pdf">Open</a><a class="btn ghost" href="docs/Training_deck_v1.3.pdf" download>Download</a></div>
+    <div class="card"><h3>Manual 3 · District officials and partners</h3><p class="who">For DIO, BMO, BEO, CDPO and development partners: support needed, independence</p>
+      <a class="btn" href="docs/Manual_3_Officials_Partners.pdf">Open</a><a class="btn ghost" href="docs/Manual_3_Officials_Partners.pdf" download>Download</a></div>
+    <div class="card"><h3 class="hi">मैनुअल 4 · आशा, आंगनवाड़ी, स्कूल</h3><p class="who">Hindi briefing for ASHAs, AWWs and headteachers in the selected villages</p>
+      <a class="btn" href="docs/Manual_4_ASHA_AWW_Schools_Hindi.pdf">Open</a><a class="btn ghost" href="docs/Manual_4_ASHA_AWW_Schools_Hindi.pdf" download>Download</a></div>
+  </div>
+</section>
+
+<section id="quick">
+  <h2>Quick reference</h2>
+  <p>Short versions of Manual 1, for use in the field.</p>
+
+  <details open><summary>Your day in one cluster</summary><div class="in">
+    <ol class="steps">
+      <li><b>Before 8 am:</b> phones charged, connect once so forms update, kit packed (cards, chalk, slips, sample tablet, letters)</li>
+      <li><b>Arrive:</b> meet the ASHA or AWW as a guide; confirm the village or ward on your list</li>
+      <li><b>Segment (F4):</b> sketch map, make the planned number of segments, the guide draws one</li>
+      <li><b>Select:</b> number every household in the segment, toss a coin, follow List A or B</li>
+      <li><b>Interview:</b> every household on the list; revisit absentees later the same day</li>
+      <li><b>Verify (F10):</b> one government school and one AWC, after the interviews</li>
+      <li><b>Close:</b> finish F4, send all forms, message your nodal officer</li>
+    </ol>
+  </div></details>
+
+  <details><summary>Segmenting the cluster</summary><div class="in">
+    <table>
+      <tr><th>Unit</th><th>What to do</th></tr>
+      <tr><td><b>Up to 600 households</b></td><td>F4 shows the planned number of segments (about 50 households each). Divide the map into exactly that many parts with clear boundaries; number them; the guide draws one slip.</td></tr>
+      <tr><td><b>Over 600 households</b> (24 clusters, mostly town wards)</td><td>Step 1: divide into the number of parts F4 gives, along roads or mohallas; draw one part. Step 2: estimate its households with the ASHA; F4 gives the segments; draw one.</td></tr>
+      <tr><td><b>Very small unit</b></td><td>Survey every household. If F4 asks, add the nearest village or ward and record it.</td></tr>
+    </table>
+    <div class="callout">Never change the number of segments or parts on your own. Unequal segments are fine; gaps, overlaps or a skipped hamlet are not.</div>
+  </div></details>
+
+  <details><summary>List A and List B</summary><div class="in">
+    <ol class="steps">
+      <li>Number <b>every household</b> in the drawn segment with chalk, 1, 2, 3 … along one route. A household = people who share a kitchen, not a building.</li>
+      <li>Toss a coin in front of the guide: <b>heads List A, tails List B</b>. Record it in F4 and the household form.</li>
+      <li>Visit every <b>coloured</b> number on the card, up to the last household numbered. The form refuses a grey number.</li>
+    </ol>
+    <p style="margin:12px 0 2px"><b>List A</b> (first 20)</p>
+    <div class="lists" id="la"></div>
+    <p style="margin:8px 0 2px"><b>List B</b> (first 20)</p>
+    <div class="lists" id="lb"></div>
+    <div class="callout">Never replace a household. Locked or refusing: record the result code, revisit once, move on.</div>
+  </div></details>
+
+  <details><summary>The household interview: key questions</summary><div class="in">
+    <p><b>H5 probe (read out first)</b></p>
+    <div class="script hi">"कृपया एक वर्ष से बड़े बच्चों, रिश्तेदारों के यहाँ रह रहे बच्चों, और छात्रावास में रहने वाले पर यहीं के सामान्य निवासी बच्चों को भी शामिल करें।"</div>
+    <p><b>H5a</b> All usual residents during 6–9 October, including those away today · <b>H5b</b> Of them, children aged 1–19 (babies under 1 are not counted)</p>
+    <p><b>C5</b> (show the sample albendazole tablet)</p>
+    <div class="script hi">कृमि मुक्ति के दिनों (6–9 अक्टूबर) में, क्या [नाम] को स्कूल, आंगनवाड़ी या कहीं और यह गोली दी गई थी?</div>
+    <p><b>C6</b></p>
+    <div class="script hi">क्या [नाम] ने गोली खाई (चबाकर, पीसकर या पूरी निगलकर)?</div>
+    <table>
+      <tr><th>Who answers</th><th>Rule</th></tr>
+      <tr><td>Child 10 years or older, at home</td><td>The child answers, after assent (up to age 17)</td></tr>
+      <tr><td>Child under 10</td><td>Parent or main caregiver</td></tr>
+      <tr><td>Child away</td><td>Revisit or phone; otherwise an adult of the household</td></tr>
+      <tr><td>Nobody can answer</td><td>Only after a revisit or phone call; tell the nodal officer</td></tr>
+    </table>
+    <div class="callout">Interview at the household only, without teachers, AWWs or ASHAs listening. Never at school.</div>
+  </div></details>
+
+  <details><summary>Record verification (F10)</summary><div class="in">
+    <ul class="ticks">
+      <li>Sites: the government school most sampled children attend, and the AWC serving the segment</li>
+      <li>Both team members recount the ticks <b>independently</b></li>
+      <li>Reported figure missing: choose “NA / data not received”; never enter 0</li>
+      <li>Figure reported but no ticked register: record it; the form marks it “not verifiable”</li>
+      <li>Photograph the reporting form only, never registers or children’s names</li>
+      <li>VF outside 0.90–1.10: ask and record the explanation; do not argue or correct anything</li>
+    </ul>
+  </div></details>
+
+  <details><summary>Golden rules</summary><div class="in">
+    <ol class="steps">
+      <li>Never replace a cluster, segment or household</li>
+      <li>Draw segments and the list by chance, in front of the guide</li>
+      <li>Number every household before selecting</li>
+      <li>Interview alone: no worker listening</li>
+      <li>Show the tablet at every child’s C5</li>
+      <li>Send every evening; never delete sent forms</li>
+    </ol>
+  </div></details>
+
+  <details><summary>Common problems</summary><div class="in">
+    <table>
+      <tr><th>Problem</th><th>What to do</th></tr>
+      <tr><td>Village or ward cannot be found</td><td>Call the nodal officer; never substitute</td></tr>
+      <tr><td>Unit much bigger or smaller than planned</td><td>Follow F4; record the reason; call before changing anything</td></tr>
+      <tr><td>Form or cluster missing on the phone</td><td>Connect to the internet; tap “Download form”; then call</td></tr>
+      <tr><td>Red message, cannot go forward</td><td>Read it and correct the answer it points to</td></tr>
+      <tr><td>Wrong cluster or household number sent</td><td>Tell the nodal officer the household ID</td></tr>
+      <tr><td>Phone lost or broken</td><td>Tell the nodal officer at once; the code is revoked and re-issued</td></tr>
+      <tr><td>Unsafe situation</td><td>Leave; safety first; inform the nodal officer</td></tr>
+    </table>
+  </div></details>
+</section>
+
+<section id="practice">
+  <h2>Practice entries and the Diwali break</h2>
+  <div class="two" style="margin-top:12px">
+    <div class="card do"><h3>Training day (4 November)</h3>
+      <ul class="ticks"><li>Scan your own team code</li><li>Practise a few dummy households, one F4 and one F10, and send them</li><li>Leave no drafts and nothing waiting to send</li></ul></div>
+    <div class="card dont"><h3>Diwali break</h3>
+      <ul class="ticks"><li><b>No entries of any kind</b></li><li>Keep the phone set up; forms update by themselves</li><li>All practice data is deleted by AIIMS before the survey starts</li></ul></div>
+  </div>
+  <div class="callout">From survey day 1, every form you send is survey data. Before day 1, clear your Sent list: Delete saved form → Sent → select all.</div>
+</section>
+
+<section id="districts">
+  <h2>Districts and nodal officers</h2>
+  <p>Contact your nodal officer for your team code, schedule and any problem in the field. Phone numbers are shared within each district.</p>
+  <table style="margin-top:10px">
+    <tr><th>District</th><th>Nodal officer(s)</th><th>Team codes</th></tr>
+    <tr><td><b>Ratlam</b></td><td>Dr S.K. Likhar</td><td>ratlam01–10 (teams 1–10)</td></tr>
+    <tr><td><b>Chhindwara</b></td><td>Dr Vikas Dwivedi; Dr Prachi Jasuja</td><td>chhindwara01–10 (teams 11–20)</td></tr>
+    <tr><td><b>Shahdol</b></td><td>Dr Vikrant Kabirpanthi; Dr Akash Ranjan Singh</td><td>shahdol01–10 (teams 21–30)</td></tr>
+    <tr><td><b>Khandwa</b></td><td>Dr Anant T. Pawar</td><td>khandwa01–10 (teams 31–40)</td></tr>
+  </table>
+</section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>Can I use an iPhone?</summary><div class="in">No. ODK Collect runs only on Android. Use an Android phone for the survey.</div></details>
+  <details><summary>Will I see new versions of the forms automatically?</summary><div class="in">Yes. Your team code keeps the forms matched to the server. Connect to the internet each morning before going to the field.</div></details>
+  <details><summary>Where do I get the list of villages for my team?</summary><div class="in">From your nodal officer, a day before each visit. The village list is never published, to keep the survey independent.</div></details>
+  <details><summary>The segment has many more households than 50. Should I make more segments?</summary><div class="in">No. Keep the planned number. A bigger segment means more households on the list; that is expected because villages have grown since 2011. Call your nodal officer if a segment has more than about 120 households.</div></details>
+  <details><summary>A household has no child aged 1–19. Do I still visit it?</summary><div class="in">Yes, if it is on your list. The form ends quickly with result code 2. It is part of the sample.</div></details>
+  <details><summary>Can the ASHA or AWW stay during the interview?</summary><div class="in">No. They guide you round and introduce you at the door, then wait away from the house.</div></details>
+</section>
+
+<section id="updates">
+  <h2>Updates</h2>
+  <table class="log" style="margin-top:10px">
+    <tr><td>3 Nov 2026</td><td>Household form v0.7: household number checked against List A or B (limit 200). F8 v1.3. List A/B cards released. Team codes created. Training deck v1.3 and manuals updated.</td></tr>
+    <tr><td>2 Nov 2026</td><td>Selected clusters added to all forms (district → block → cluster). Two-step segmentation for large units in F4.</td></tr>
+    <tr><td>2 Nov 2026</td><td>Changes after field testing: who answers for each child, “No one present can answer”, F10 classes and register options.</td></tr>
+  </table>
+</section>
+</main>
+<footer><div class="wrap">Department of Community and Family Medicine, AIIMS Bhopal · Independent NDD Coverage Evaluation Survey, Madhya Pradesh, 2026. Team codes and the village list are shared only by nodal officers, never on this page.</div></footer>
+<script>
+const A=[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19,20], B=[2,3,4,6,7,8,9,11,12,13,15,16,17,19,20];
+for (const [id,l] of [['la',A],['lb',B]]){const el=document.getElementById(id);
+  for(let n=1;n<=20;n++){const s=document.createElement('span');s.textContent=n;s.className=l.includes(n)?'on':'off';el.appendChild(s);}}
+</script>
+</body>
+</html>
