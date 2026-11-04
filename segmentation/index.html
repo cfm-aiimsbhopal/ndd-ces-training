@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Making Segments · NDD CES</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0B5563;--teal-l:#EAF3F4;--orange:#E89B2C;--orange-l:#FBEBD3;--ink:#1F2A30;--muted:#5B7F86;--line:#D9E8EA;--red:#C0392B;--green:#2E8B57;
+--s1:#E08A1E;--s2:#2B7BB9;--s3:#C0392B;--s4:#2E8B57}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#14232A;overflow:hidden}
+body{font:20px/1.45 "Noto Sans",system-ui,sans-serif;color:var(--ink)}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:0 0;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.slide{position:absolute;inset:0;padding:34px 56px 52px;display:none;flex-direction:column}
+.slide.active{display:flex}
+.slide>h2{font-family:"Noto Serif",Georgia,serif;color:var(--teal);font-size:34px;line-height:1.15;margin:0 0 16px}
+.slide>h2::after{content:"";display:block;width:64px;height:5px;background:var(--orange);margin-top:9px;border-radius:3px}
+.kicker{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin:0 0 4px}
+.body{flex:1;min-height:0}
+footer.ft{position:absolute;left:0;right:0;bottom:0;height:34px;background:var(--teal);color:#D9E8EA;font-size:13px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+p{margin:0 0 12px}
+b,strong{color:var(--teal)}
+.split{display:grid;grid-template-columns:740px 1fr;gap:26px;height:100%;align-items:start}
+.fig{position:relative;width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#fafafa}
+.fig img{display:block;width:100%;height:100%}
+.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.side{font-size:19px}
+.side p{margin-bottom:10px}
+.box{background:var(--teal-l);border-radius:10px;padding:12px 16px;margin-bottom:12px}
+.call{background:var(--orange-l);border-left:6px solid var(--orange);border-radius:6px;padding:10px 14px;font-weight:600;margin-top:10px}
+.big{font-size:22px}
+.muted{color:var(--muted)}
+.small{font-size:16px}
+[data-s]{opacity:0;transition:opacity .35s}
+[data-s].on{opacity:1}
+[data-hide].off{opacity:0!important}
+ol.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:8px 0 8px 50px;border-bottom:1px solid var(--line)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:36px;height:36px;border-radius:50%;background:var(--orange);color:var(--ink);font-weight:700;display:flex;align-items:center;justify-content:center}
+ul.ticks{list-style:none;padding:0;margin:0}
+ul.ticks li{position:relative;padding:5px 0 5px 32px}
+ul.ticks li::before{content:"✓";position:absolute;left:4px;color:var(--green);font-weight:700}
+table.t{border-collapse:collapse;width:100%;font-size:17px}
+table.t th,table.t td{padding:4px 8px;border-bottom:1px solid var(--line);text-align:left}
+table.t th{color:var(--muted);font-size:14px}
+table.t td.n{text-align:right;font-variant-numeric:tabular-nums}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#F6F8F8;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card h3{margin:0 0 6px;color:var(--teal);font-size:21px}
+.card .ic{font-size:30px;line-height:1;margin-bottom:8px}
+.dont{color:var(--red);font-weight:700}
+.do{color:var(--green);font-weight:700}
+.title{background:var(--teal);color:#fff;justify-content:center;padding-left:90px}
+.title h1{font-family:"Noto Serif",Georgia,serif;font-size:64px;margin:0 0 10px;line-height:1.1}
+.title .sub{font-size:26px;color:#D9E8EA;max-width:900px}
+.title .tag{display:inline-block;margin-top:30px;background:var(--orange);color:var(--ink);font-weight:700;padding:8px 16px;border-radius:6px;font-size:20px}
+.title .org{position:absolute;left:90px;bottom:60px;font-size:17px;color:#BFD6DA}
+.section{background:var(--teal-l);justify-content:center;padding-left:90px}
+.section h2{font-size:54px}
+.rule{font-family:"Noto Serif",Georgia,serif;font-size:40px;color:var(--teal);line-height:1.2;margin:6px 0 22px}
+.lbl{font:700 34px "Noto Sans",sans-serif;paint-order:stroke;stroke:#fff;stroke-width:7px}
+.btn{font:inherit;font-weight:700;background:var(--teal);color:#fff;border:0;border-radius:8px;padding:12px 22px;cursor:pointer;font-size:20px}
+.btn.ghost{background:#fff;color:var(--teal);border:2px solid var(--teal)}
+.chits{display:flex;gap:14px;margin:16px 0}
+.chit{width:78px;height:78px;border-radius:10px;border:3px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#fff;transition:transform .25s,box-shadow .25s}
+.chit.win{transform:scale(1.18);box-shadow:0 0 0 6px var(--ink)}
+#notes{position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;background:#FFFBEA;border-top:4px solid var(--orange);padding:14px 22px;font-size:16px;line-height:1.5;display:none;z-index:9}
+#notes.show{display:block}
+#notes h4{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+aside.notes{display:none}
+#hint{position:fixed;right:10px;top:8px;color:#8FB0B6;font-size:12px;z-index:8}
+#nav{position:fixed;right:10px;bottom:8px;display:flex;gap:6px;z-index:8}
+#nav button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:6px;padding:6px 12px;font-size:16px;cursor:pointer}
+#prog{position:absolute;left:0;top:0;height:4px;background:var(--orange);transition:width .3s;z-index:2}
+</style>
+</head>
+<body>
+<div id="hint">← → or tap to move · N for speaker notes</div>
+<div id="stage">
+<div id="prog"></div>
+
+<!-- 1 -->
+<section class="slide title">
+  <div class="kicker" style="color:#F0B05A">NDD CES Madhya Pradesh 2026 · Survey teams</div>
+  <h1>Making segments</h1>
+  <div class="sub">How to divide a village or ward into segments, step by step, on real village sketches</div>
+  <div><span class="tag">Watch it done, then do it yourself</span></div>
+  <div class="org">Department of Community and Family Medicine, AIIMS Bhopal · with NHM Madhya Pradesh and WHO</div>
+  <aside class="notes">Purpose: segmentation was the step teams found hardest to picture in the main training. This deck shows the same method on one village, step by step, then on three more villages, then gives a practice map. About 30 minutes with discussion. Press the right arrow to reveal each step; many slides build up in several clicks.</aside>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>What you will be able to do</h2>
+  <div class="body">
+    <p class="big" style="max-width:1050px">Segmenting is the first thing you do in every cluster, before any household is chosen. Here you will see it done on real village sketches, one step at a time.</p>
+    <ol class="steps" style="max-width:980px;margin-top:18px">
+      <li>Divide any village or ward into <b>the planned number of segments</b></li>
+      <li>Explain why that number <b>never changes</b>, even when the village is bigger or smaller than expected</li>
+      <li>Handle three harder cases: <b>a scattered village</b>, <b>a large ward</b> and <b>a sketch that shows too little</b></li>
+      <li>Draw one segment fairly and record it in <b>F4</b></li>
+    </ol>
+  </div>
+  <aside class="notes">Ask before starting: "Who has drawn a village sketch map before?" Many will have done this for microplans. Tell them this is the same skill with one extra idea: counting households in each block before drawing the lines.</aside>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <h2>Why we make segments</h2>
+  <div class="body" style="display:grid;grid-template-columns:720px 1fr;gap:30px">
+    <svg viewBox="0 0 720 520" id="whysvg" style="width:720px;height:520px">
+      <text x="150" y="30" text-anchor="middle" font-weight="700" fill="#0B5563" font-size="22">Village A · 50 households</text>
+      <text x="530" y="30" text-anchor="middle" font-weight="700" fill="#0B5563" font-size="22">Village B · 200 households</text>
+      <g id="vA"></g><g id="vB"></g>
+      <g data-s="2">
+        <rect x="30" y="70" width="240" height="200" rx="14" fill="none" stroke="#E08A1E" stroke-width="5"/>
+        <text x="150" y="300" text-anchor="middle" font-size="20" fill="#1F2A30">1 segment: all of it surveyed</text>
+        <line x1="530" y1="60" x2="530" y2="460" stroke="#0B5563" stroke-width="4" stroke-dasharray="10 7"/>
+        <line x1="350" y1="260" x2="710" y2="260" stroke="#0B5563" stroke-width="4" stroke-dasharray="10 7"/>
+        <rect x="350" y="60" width="180" height="200" rx="10" fill="#E08A1E" fill-opacity=".25" stroke="#E08A1E" stroke-width="5"/>
+        <text x="530" y="490" text-anchor="middle" font-size="20" fill="#1F2A30">4 segments: only 1 of the 4 surveyed</text>
+      </g>
+    </svg>
+    <div class="side">
+      <div class="box" data-s="1"><b>Step 1, the selection.</b> Village B has 4 times as many households, so it was 4 times as likely to be chosen as a cluster.</div>
+      <div class="box" data-s="2"><b>Step 2, the segment.</b> In village B we survey only one of its 4 segments, so a household there has a 1 in 4 chance of being in it.</div>
+      <div class="call" data-s="3">4 times the chance × 1 in 4 = the same chance for every household. That is why the sample needs no extra weighting inside a block.</div>
+    </div>
+  </div>
+  <aside class="notes">Village A is one segment and all of it is surveyed. The key message is on the last click: the two stages cancel out. Do not go into the formula; teams only need to see that the big village is more likely to be picked but we take only a part of it.</aside>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>The one rule you cannot break</h2>
+  <div class="body">
+    <div class="rule">Make exactly the number of segments that F4 shows.</div>
+    <div class="grid3">
+      <div class="card"><div class="ic">📋</div><h3>F4 says</h3><p>Census 2011: 131 households<br><b>3 segments</b></p></div>
+      <div class="card" data-s="1"><div class="ic">🏠</div><h3>You find 106</h3><p>Still <b>3 segments</b>, of about 35 households each</p></div>
+      <div class="card" data-s="2"><div class="ic">🏘️</div><h3>You find 180</h3><p>Still <b>3 segments</b>, of about 60 households each</p></div>
+    </div>
+    <div class="call" data-s="3" style="margin-top:22px">Why: every household's chance of selection is worked out from the planned number. If you change it, those chances are wrong. If you truly cannot make that many, record the reason in F4 and call your nodal officer before going on.</div>
+  </div>
+  <aside class="notes">This is the WHO manual's own example (box 1.3). Villages have grown since 2011, so most segments will be bigger than 50. That is expected and fine. Ask: "You arrive and find 300 households where F4 planned 4 segments. How many segments do you make?" Answer: 4, of about 75 each.</aside>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>What a good segment looks like</h2>
+  <div class="body grid2" style="grid-template-rows:1fr 1fr">
+    <div class="card" data-s="1"><div class="ic">⚖️</div><h3>About the same number of households</h3><p>Not the same area. A crowded lane and a spread-out tola can each be one segment.</p></div>
+    <div class="card" data-s="2"><div class="ic">🛣️</div><h3>Boundaries you can see on the ground</h3><p>A road, lane, nala, field edge or wall. Never an imaginary line through the middle of houses.</p></div>
+    <div class="card" data-s="3"><div class="ic">🧩</div><h3>One piece</h3><p>All its houses are joined together, not two scattered patches.</p></div>
+    <div class="card" data-s="4"><div class="ic">🤝</div><h3>Everyone agrees on it</h3><p>Both of you and the guide can point to any house and say whether it is in the segment or not.</p></div>
+  </div>
+  <aside class="notes">These four checks come back on the "check your segments" slide and in the practice. "About the same" is a judgement: there is no fixed tolerance. If one segment is clearly bigger than the others, move a block from it to a neighbour.</aside>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>Six steps, in this order</h2>
+  <div class="body" style="display:grid;grid-template-columns:1fr 420px;gap:34px">
+    <ol class="steps big">
+      <li><b>Walk</b> the whole village or ward with the ASHA or AWW</li>
+      <li><b>Sketch</b> roads, lanes, nala and landmarks, and where houses stand</li>
+      <li><b>Split</b> the map into small blocks along roads and lanes</li>
+      <li><b>Count</b> the households in each block and write the count on the map</li>
+      <li><b>Join</b> neighbouring blocks into the planned number of segments</li>
+      <li><b>Number</b> the segments and <b>draw one</b> by lot</li>
+    </ol>
+    <div class="side">
+      <div class="call" style="margin-top:0">Steps 3 and 4 are the secret. Once every block has a count, joining them into segments is simple addition.</div>
+      <p class="muted" style="margin-top:16px">Most mistakes come from drawing segment lines before counting. Count first, then draw.</p>
+    </div>
+  </div>
+  <aside class="notes">Stress the order. In training, teams tried to draw segment lines straight onto the sketch, which is why they could not picture it. Splitting into small blocks first, with a count in each, turns it into adding up numbers.</aside>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">Worked example</div>
+  <h2>Gol village: the sketch</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="Hand-drawn sketch map of Gol village"></div>
+    <div class="side">
+      <div class="box"><b>F4 shows:</b><br>Census 2011: 196 households<br>Planned segments: <b>4</b></div>
+      <p>This is a real sketch drawn by a field team. It shows the roads and lanes, the temples, the playground, trees and the houses.</p>
+      <p class="muted small">Each house symbol stands for a group of houses. The household counts in this example are made up for teaching.</p>
+    </div>
+  </div>
+  <aside class="notes">We will follow this one village through all six steps. Let teams look at the sketch for a minute and ask: "Where would you draw the lines for 4 segments?" Most will divide by area. Keep their answers in mind and compare at the end.</aside>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">Gol · steps 1 and 2</div>
+  <h2>Walk the whole village, then sketch it</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="">
+      <svg viewBox="0 0 1600 1122">
+        <path data-s="1" d="M20,500 L20,1100 L1590,1100 L1590,80 L1250,90 L1000,90 L700,140 L470,150 L450,280 L420,470 Z" fill="none" stroke="#0B5563" stroke-width="10" stroke-dasharray="26 16"/>
+        <g data-s="2">
+          <circle cx="1470" cy="840" r="120" fill="none" stroke="#E08A1E" stroke-width="9"/>
+          <circle cx="1440" cy="470" r="80" fill="none" stroke="#E08A1E" stroke-width="9"/>
+          <circle cx="90" cy="1030" r="95" fill="none" stroke="#E08A1E" stroke-width="9"/>
+        </g>
+        <g data-s="3" fill="none" stroke="#2B7BB9" stroke-width="16" stroke-linecap="round" stroke-opacity=".55">
+          <path d="M415,515 Q600,330 850,220 Q1050,170 1170,230 Q1240,330 1290,470 L1560,470"/>
+          <path d="M415,515 Q560,690 760,800 Q900,860 1050,840 Q1300,700 1560,470"/>
+          <path d="M700,300 L690,720"/><path d="M815,255 Q840,500 810,800"/><path d="M1005,205 L1020,650 L950,840"/>
+          <path d="M20,520 L410,520"/><path d="M40,710 L510,690"/>
+        </g>
+      </svg>
+    </div>
+    <div class="side">
+      <p data-s="1"><b>Walk the whole boundary</b> with the ASHA or AWW. Ask: where does the village end?</p>
+      <p data-s="2"><b>Include the far houses:</b> by the temple, at the end of the road, near the fields, across the nala. They are part of the village.</p>
+      <p data-s="3"><b>Draw the roads and lanes clearly.</b> They will become your block and segment boundaries.</p>
+      <div class="call" data-s="3">Mark the landmarks you will use to find your way back: school, AWC, temple, hand pump.</div>
+    </div>
+  </div>
+  <aside class="notes">The orange circles are outlying houses. Teams often forget them because they are not on the main street. Ask the guide directly: "Are there any houses beyond this point?" A tola or majra that is part of the census village must be included. The blue lines trace the roads teams will use as boundaries.</aside>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="kicker">Gol · step 3</div>
+  <h2>Split the map into small blocks along roads</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="">
+      <svg viewBox="0 0 1600 1122" id="golBlocks"></svg>
+    </div>
+    <div class="side">
+      <p>The roads and lanes already cut Gol into <b>9 blocks</b>. Give each one a letter, <b>a</b> to <b>i</b>.</p>
+      <p>A block is a piece you can walk all the way round.</p>
+      <div class="call">Blocks are smaller than segments. Usually 2 or 3 blocks make one segment.</div>
+    </div>
+  </div>
+  <aside class="notes">There is no single correct set of blocks. Any piece with clear edges will do. Smaller blocks make the joining step easier. If one block is very large, split it again along a lane.</aside>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="kicker">Gol · step 4</div>
+  <h2>Count the households in each block</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="">
+      <svg viewBox="0 0 1600 1122" id="golCounts"></svg>
+    </div>
+    <div class="side">
+      <table class="t" id="golTable"></table>
+      <p class="small" style="margin-top:10px">Ask the ASHA, who knows each lane, then walk past quickly to check. A rough count is enough here.</p>
+      <div class="call">Count <b>households</b>, not buildings: a household is people who share one kitchen.</div>
+    </div>
+  </div>
+  <aside class="notes">Write the count inside each block on the paper sketch. The total, 201, is bigger than the 196 on F4. That is normal and changes nothing: still 4 segments. Exact counting happens later, when you chalk numbers on doors in the selected segment.</aside>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="kicker">Gol · step 5</div>
+  <h2>Join neighbouring blocks into 4 segments</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="">
+      <svg viewBox="0 0 1600 1122" id="golJoin"></svg>
+    </div>
+    <div class="side">
+      <div class="box big"><b>Target:</b> 201 ÷ 4 ≈ <b>50</b> households per segment</div>
+      <p data-s="1"><span class="sw" style="background:var(--s1)"></span><b>Segment 1</b> = a + b = 12 + 38 = <b>50</b></p>
+      <p data-s="2"><span class="sw" style="background:var(--s2)"></span><b>Segment 2</b> = c + d + e = 9 + 17 + 22 = <b>48</b></p>
+      <p data-s="3"><span class="sw" style="background:var(--s3)"></span><b>Segment 3</b> = f + g = 44 + 9 = <b>53</b></p>
+      <p data-s="4"><span class="sw" style="background:var(--s4)"></span><b>Segment 4</b> = h + i = 31 + 19 = <b>50</b></p>
+      <p class="muted small" data-s="4">Start at one end of the village and add neighbouring blocks until you reach about 50. Then start the next segment.</p>
+    </div>
+  </div>
+  <aside class="notes">Walk through the addition aloud. Start at the west end: a has 12, too few, so add its neighbour b to get 50. Stop and start segment 2. Each segment is made only of blocks that touch each other.</aside>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="kicker">Gol · check</div>
+  <h2>Check your segments</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="">
+      <svg viewBox="0 0 1600 1122" id="golFinal"></svg>
+    </div>
+    <div class="side">
+      <ul class="ticks">
+        <li><b>About the same:</b> 50, 48, 53 and 50</li>
+        <li><b>Visible boundaries:</b> every edge is a road or lane</li>
+        <li><b>One piece:</b> each segment's blocks touch</li>
+        <li><b>Agreed:</b> both of you and the guide know which houses are in each</li>
+      </ul>
+      <div class="call">Segment 4 covers much more ground than segment 3. That is correct: segments have equal households, not equal area.</div>
+    </div>
+  </div>
+  <aside class="notes">Now compare with the lines the teams suggested on the first Gol slide. Most people cut the village into four equal-looking areas. That would have put far more households in the central segment than in the east.</aside>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <div class="kicker">Gol · step 6</div>
+  <h2>Number the segments and draw one by lot</h2>
+  <div class="body" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+    <div>
+      <ol class="steps">
+        <li>Write the segment numbers <b>1 to 4</b> on the sketch</li>
+        <li>Write 1, 2, 3, 4 on <b>paper slips</b>, fold them and mix them</li>
+        <li>Ask the guide or a villager to <b>pick one</b> in front of you</li>
+        <li>Circle the drawn segment on the sketch</li>
+      </ol>
+      <div class="call">Never choose the segment yourself, and never let the guide choose it. Only the slip decides.</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3>Try it</h3>
+      <div class="chits" style="justify-content:center" id="chits">
+        <div class="chit" style="background:var(--s1)">1</div><div class="chit" style="background:var(--s2)">2</div><div class="chit" style="background:var(--s3)">3</div><div class="chit" style="background:var(--s4)">4</div>
+      </div>
+      <button class="btn" id="drawBtn">Draw a slip</button>
+      <p id="drawOut" class="big" style="margin-top:16px;min-height:34px"></p>
+      <p class="muted small">Each slip has the same chance. In the next slide, slip 3 was drawn.</p>
+    </div>
+  </div>
+  <aside class="notes">Use the button a few times to show that any segment can come up, including the one far from the road. The draw must be seen by the guide. If the cluster was selected twice, F4 asks for a second, different segment.</aside>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <div class="kicker">Gol · record</div>
+  <h2>Segment 3 was drawn: record it in F4</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1122"><img src="img/gol.jpg" alt="">
+      <svg viewBox="0 0 1600 1122" id="golPick"></svg>
+    </div>
+    <div class="side">
+      <p>In F4, enter:</p>
+      <ul class="ticks">
+        <li>Segments made: <b>4</b></li>
+        <li>Segment drawn: <b>3</b></li>
+        <li>GPS point at the centre of segment 3</li>
+        <li>Photo of the sketch, with segments numbered and segment 3 circled</li>
+      </ul>
+      <div class="call">From now on you work only inside segment 3. Houses outside it are never visited, even if they are closer.</div>
+    </div>
+  </div>
+  <aside class="notes">The photo of the sketch is checked by the nodal officer and AIIMS. A clear photo with block counts written on it lets us confirm the segments were about equal.</aside>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <div class="kicker">Gol · inside segment 3</div>
+  <h2>Next: number every household in the segment</h2>
+  <div class="body" style="display:grid;grid-template-columns:800px 1fr;gap:26px">
+    <svg viewBox="0 0 800 540" id="hhsvg" style="width:800px;height:540px;background:#FAFBFB;border:1px solid var(--line);border-radius:8px"></svg>
+    <div class="side">
+      <p data-s="1"><b>Agree one route</b> with the guide that passes every household in the segment.</p>
+      <p data-s="2"><b>Chalk 1, 2, 3 …</b> on every door along the route, including locked and empty-looking houses. Here: 53 households.</p>
+      <p data-s="3"><b>Toss the coin</b> for List A or B and visit only the listed numbers (List A shown: about 3 in every 4).</p>
+      <div class="call" data-s="3">Household selection with List A and B is covered in its own session.</div>
+    </div>
+  </div>
+  <aside class="notes">This slide only links segmentation to the next step. Do not teach List A/B in detail here. Point out that the full count of 53 comes from chalking doors, not from the ASHA's earlier estimate.</aside>
+</section>
+
+<!-- 16 -->
+<section class="slide section">
+  <div class="kicker">Three more villages</div>
+  <h2>The same steps, harder villages</h2>
+  <p class="big" style="max-width:900px">A village with dense lanes and scattered houses, a large urban ward, and a sketch that cannot be segmented yet.</p>
+  <aside class="notes">Each example adds one new idea. Ask the teams to do the reasoning before you click to reveal.</aside>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <div class="kicker">Example 2 · Kalapani</div>
+  <h2>Dense lanes and scattered houses</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1148"><img src="img/kalapani.jpg" alt="Hand-drawn sketch map of Kalapani village">
+      <svg viewBox="0 0 1600 1148" id="kalSvg"></svg>
+    </div>
+    <div class="side">
+      <div class="box"><b>F4 shows:</b> 3 segments.<br>Block counts total 151, so about 50 each.</div>
+      <p data-s="1"><span class="sw" style="background:var(--s1)"></span><b>Segment 1 · 52:</b> the whole west side. Large, but houses are spread out.</p>
+      <p data-s="2"><span class="sw" style="background:var(--s2)"></span><b>Segment 2 · 49:</b> the tight lanes in the north-east.</p>
+      <p data-s="3"><span class="sw" style="background:var(--s3)"></span><b>Segment 3 · 50:</b> the southern lanes and the east side.</p>
+      <div class="call" data-s="3">The crowded corner is small on paper but holds two segments' worth of households.</div>
+    </div>
+  </div>
+  <aside class="notes">Before clicking, ask: "If you divided Kalapani into three equal areas, what would go wrong?" The north-east corner, with its many lanes, would become one segment with far more than 50 households. The main north–south road is the natural boundary between segment 1 and the rest.</aside>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <div class="kicker">Example 3 · Nariyalkheda</div>
+  <h2>A large ward (over 600 households): parts first</h2>
+  <div class="body" style="display:grid;grid-template-columns:630px 1fr;gap:28px">
+    <div class="fig" style="aspect-ratio:562/470"><img src="img/nariyalkheda.jpg" alt="Hand-drawn sketch map of Nariyalkheda with zones">
+      <svg viewBox="0 0 562 470" id="narSvg"></svg>
+    </div>
+    <div class="side">
+      <div class="box">F4 shows <b>LARGE UNIT: 5 parts</b></div>
+      <ol class="steps small">
+        <li data-s="1"><b>Divide into 5 parts</b> along main roads or mohallas (here, zones A to E)</li>
+        <li data-s="2"><b>Draw one part</b> by slip: part <b>C</b></li>
+        <li data-s="3"><b>Estimate households</b> in part C with the ASHA: about 150. F4 then shows <b>3 segments</b></li>
+        <li data-s="4"><b>Segment part C</b> using the six steps, then draw one segment</li>
+      </ol>
+    </div>
+  </div>
+  <aside class="notes">24 clusters are large units, mostly town wards. Nobody can count and sketch a ward of 2,000 households in one morning, so we first choose a part at random and then segment only that part. F4 records parts × segments, which keeps the weights correct. WHO has accepted this two-step rule.</aside>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <div class="kicker">Example 4 · Tila Jamalpura</div>
+  <h2>A sketch that cannot be segmented yet</h2>
+  <div class="body" style="display:grid;grid-template-columns:715px 1fr;gap:26px">
+    <div class="fig" style="aspect-ratio:1448/1086"><img src="img/tila-jamalpura.jpg" alt="Hand-drawn sketch of Tila Jamalpura showing landmarks only">
+      <svg viewBox="0 0 1448 1086">
+        <g data-s="2" fill="none" stroke="#C0392B" stroke-width="10">
+          <ellipse cx="150" cy="1025" rx="120" ry="60"/><ellipse cx="420" cy="1020" rx="120" ry="60"/><ellipse cx="885" cy="1005" rx="120" ry="60"/><ellipse cx="1115" cy="995" rx="120" ry="60"/>
+        </g>
+        <g data-s="2" class="lbl" fill="#C0392B" font-size="80" text-anchor="middle">
+          <text x="285" y="975" class="lbl" style="font-size:80px">?</text><text x="555" y="970" class="lbl" style="font-size:80px">?</text><text x="1020" y="955" class="lbl" style="font-size:80px">?</text><text x="1250" y="945" class="lbl" style="font-size:80px">?</text>
+        </g>
+      </svg>
+    </div>
+    <div class="side">
+      <p data-s="1"><b>What it shows:</b> roads, shops, masjids, a school, clinics. A neat map for finding your way.</p>
+      <p data-s="2"><b>What is missing:</b> where people live. The mohallas are only labels at the bottom, with no houses and no counts.</p>
+      <div class="call" data-s="3">Fix it before segmenting: walk each mohalla with the ASHA, mark where the houses are and write a count in each block. Then follow the six steps.</div>
+    </div>
+  </div>
+  <aside class="notes">A landmark map is not a segmentation map. Segments must contain households, and you can only balance them if you know where the households are. In urban wards, multi-storey buildings count as many households: count each flat that has its own kitchen.</aside>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>Common mistakes</h2>
+  <div class="body grid3" style="grid-template-rows:1fr 1fr;gap:14px">
+    <div class="card"><p class="dont">✗ Changing the number of segments</p><p class="do">✓ Make exactly what F4 shows; call before changing</p></div>
+    <div class="card"><p class="dont">✗ Equal area instead of equal households</p><p class="do">✓ Count each block first, then join blocks</p></div>
+    <div class="card"><p class="dont">✗ Lines through the middle of houses</p><p class="do">✓ Use roads, lanes, nala, field edges, walls</p></div>
+    <div class="card"><p class="dont">✗ Leaving out far houses or a tola</p><p class="do">✓ Walk the whole boundary with the guide first</p></div>
+    <div class="card"><p class="dont">✗ Choosing the easy segment, or letting the guide choose</p><p class="do">✓ Draw by slips, in front of the guide</p></div>
+    <div class="card"><p class="dont">✗ Counting buildings</p><p class="do">✓ Count households: people who share one kitchen</p></div>
+  </div>
+  <aside class="notes">Ask teams which of these they think they are most likely to make. The most common in practice is choosing the segment nearest the road, often without meaning to, by drawing the slips only after deciding where to start.</aside>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <div class="kicker">Your turn · Bagroda</div>
+  <h2>Divide Bagroda into 3 segments</h2>
+  <div class="body split">
+    <div class="fig" style="aspect-ratio:1600/1110"><img src="img/bagroda.jpg" alt="Hand-drawn sketch map of Bagroda village">
+      <svg viewBox="0 0 1600 1110" id="bagSvg"></svg>
+    </div>
+    <div class="side">
+      <div class="box">F4 shows <b>3 segments</b>. The guide's counts for each block are on the map. Total 137, so about <b>46</b> each.</div>
+      <p>Work it out on paper before the answer is shown.</p>
+      <div data-s="1">
+        <p class="small"><b>One good answer:</b></p>
+        <p class="small"><span class="sw" style="background:var(--s1)"></span>Segment 1: 41 + 8 = <b>49</b></p>
+        <p class="small"><span class="sw" style="background:var(--s2)"></span>Segment 2: 21 + 25 = <b>46</b></p>
+        <p class="small"><span class="sw" style="background:var(--s3)"></span>Segment 3: 22 + 12 + 8 = <b>42</b></p>
+        <p class="muted small">Other answers are fine if they pass the four checks.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Give teams 5 minutes. Ask two or three pairs to share their answers and check each against the four checks: about equal, visible boundaries, one piece, agreed. The pond on the left has no houses. The road along the top joins the north row to the panchayat block, so segment 3 is one piece.</aside>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <h2>Before you leave the segmenting step</h2>
+  <div class="body" style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+    <ul class="ticks big">
+      <li>Walked the whole boundary with the guide</li>
+      <li>Sketch shows roads, landmarks and where the houses are</li>
+      <li>A household count is written in every block</li>
+      <li>Exactly the number of segments F4 shows</li>
+    </ul>
+    <ul class="ticks big">
+      <li>Segments numbered on the sketch</li>
+      <li>One drawn by slip, in front of the guide</li>
+      <li>F4 filled: segments made, segment drawn, GPS</li>
+      <li>Photo of the sketch with the drawn segment circled</li>
+    </ul>
+  </div>
+  <p class="muted" style="margin-top:auto">Take a screenshot of this slide and keep it on your phone.</p>
+  <aside class="notes">End by asking each pair one question from the common mistakes slide. Point them to Manual 1 (pages 14–15) and the quick reference on the training site.</aside>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <h2>Sources and credits</h2>
+  <div class="body small">
+    <p><b>Sketch maps:</b> ENABLE-2 community field teams, Department of Community and Family Medicine, AIIMS Bhopal (Nariyalkheda map by Arun Sahu). Used with thanks.</p>
+    <p><b>Household counts</b> in all examples are made up for teaching and are not the real counts of these villages.</p>
+    <p><b>Method:</b> WHO coverage evaluation survey field manual (2019), box 1.3 and section 2.1; NDD CES MP 2026 Manual 1: Survey teams, pages 14–15; form F4 v1.1.</p>
+  </div>
+  <aside class="notes">—</aside>
+</section>
+
+<footer class="ft"><span>NDD CES MP 2026 · Making segments</span><span id="pg"></span></footer>
+</div>
+<div id="notes"><h4>Speaker notes</h4><div id="notesTxt"></div></div>
+<div id="nav"><button id="bPrev" aria-label="Previous">‹</button><button id="bNext" aria-label="Next">›</button></div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+const C={1:"#E08A1E",2:"#2B7BB9",3:"#C0392B",4:"#2E8B57"};
+function poly(p){return p.map(q=>q.join(",")).join(" ")}
+
+/* ---------- Gol ---------- */
+const golB={
+ a:{seg:1,n:12,at:[200,610],p:[[15,515],[410,515],[520,690],[15,700]]},
+ b:{seg:1,n:38,at:[420,900],p:[[15,705],[520,690],[620,700],[760,790],[880,850],[880,1110],[15,1110]]},
+ c:{seg:2,n:9,at:[610,215],p:[[465,150],[820,120],[820,222],[700,290],[600,350],[480,440],[465,400]]},
+ d:{seg:2,n:17,at:[560,520],p:[[415,515],[480,450],[600,350],[698,295],[690,720],[620,700],[500,600]]},
+ e:{seg:2,n:22,at:[760,520],p:[[702,290],[812,255],[832,500],[810,795],[760,790],[694,720]]},
+ f:{seg:3,n:44,at:[920,560],p:[[815,255],[1005,205],[1015,330],[1020,650],[950,845],[880,850],[812,800],[835,500]]},
+ g:{seg:3,n:9,at:[960,150],p:[[820,120],[1080,95],[1080,190],[1000,202],[850,215],[820,222]]},
+ h:{seg:4,n:31,at:[1140,520],p:[[1010,205],[1160,215],[1200,300],[1270,420],[1290,480],[1300,680],[1200,750],[1050,840],[950,845],[1020,650],[1015,330]]},
+ i:{seg:4,n:19,at:[1420,620],p:[[1080,95],[1595,60],[1595,1110],[880,1110],[880,850],[1050,840],[1200,750],[1300,680],[1290,480],[1270,420],[1200,300],[1160,215],[1080,190]]}
+};
+function golLayer(svg,mode){
+  for(const k in golB){const b=golB[k];
+    const g=el("g",{},svg);
+    if(mode==="join"){g.setAttribute("data-s",b.seg)}
+    const fill=(mode==="blocks"||mode==="counts")?"none":C[b.seg];
+    el("polygon",{points:poly(b.p),fill:fill,"fill-opacity":mode==="pick"?(b.seg===3?.22:.0):.28,stroke:(mode==="blocks"||mode==="counts")?"#0B5563":C[b.seg],"stroke-width":(mode==="blocks"||mode==="counts")?5:4,"stroke-dasharray":(mode==="blocks"||mode==="counts")?"14 9":"","stroke-opacity":mode==="pick"&&b.seg!==3?0:1},g);
+    if(mode!=="final"&&mode!=="pick"){
+      const t=mode==="blocks"?k:(k+" · "+b.n);
+      const w=mode==="blocks"?70:150;
+      el("rect",{x:b.at[0]-w/2,y:b.at[1]-34,width:w,height:62,rx:31,fill:"#fff",stroke:mode==="join"?C[b.seg]:"#0B5563","stroke-width":5},g);
+      el("text",{x:b.at[0],y:b.at[1]+11,"text-anchor":"middle","font-size":38,"font-weight":700,fill:mode==="join"?C[b.seg]:"#0B5563"},g,t);
+    }
+  }
+  if(mode==="final"||mode==="pick"){
+    const segAt={1:[230,860,50],2:[600,480,48],3:[900,470,53],4:[1330,830,50]};
+    if(mode==="pick"){ // grey out others
+      const m=el("mask",{id:"m3"},svg);el("rect",{x:0,y:0,width:1600,height:1122,fill:"#fff"},m);
+      for(const k in golB){if(golB[k].seg===3)el("polygon",{points:poly(golB[k].p),fill:"#000"},m)}
+      el("rect",{x:0,y:0,width:1600,height:1122,fill:"#1F2A30","fill-opacity":.55,mask:"url(#m3)"},svg);
+      for(const k in golB){if(golB[k].seg===3)el("polygon",{points:poly(golB[k].p),fill:"none",stroke:C[3],"stroke-width":9},svg)}
+      el("circle",{cx:925,cy:560,r:16,fill:"#0B5563",stroke:"#fff","stroke-width":5},svg);
+      el("text",{x:950,y:600,"font-size":34,"font-weight":700,fill:"#0B5563",class:"lbl"},svg,"GPS");
+    }
+    for(const s in segAt){const [x,y,n]=segAt[s];
+      if(mode==="pick"&&s!=="3")continue;
+      el("circle",{cx:x,cy:y,r:58,fill:C[s],stroke:"#fff","stroke-width":7},svg);
+      el("text",{x:x,y:y+22,"text-anchor":"middle","font-size":64,"font-weight":700,fill:"#fff"},svg,s);
+      if(mode==="final"){el("text",{x:x,y:y+100,"text-anchor":"middle","font-size":36,"font-weight":700,fill:C[s],class:"lbl"},svg,n+" HH")}
+    }
+  }
+}
+golLayer(document.getElementById("golBlocks"),"blocks");
+golLayer(document.getElementById("golCounts"),"counts");
+golLayer(document.getElementById("golJoin"),"join");
+golLayer(document.getElementById("golFinal"),"final");
+golLayer(document.getElementById("golPick"),"pick");
+(function(){const t=document.getElementById("golTable");let h="<tr><th>Block</th><th class='n'>Households</th><th>Block</th><th class='n'>Households</th></tr>";
+ const ks=Object.keys(golB);for(let i=0;i<5;i++){const a=ks[i],b=ks[i+5];h+=`<tr><td>${a}</td><td class='n'>${golB[a].n}</td><td>${b||"<b>Total</b>"}</td><td class='n'>${b?golB[b].n:"<b>201</b>"}</td></tr>`}t.innerHTML=h})();
+
+/* ---------- Why: two villages ---------- */
+(function(){const A=document.getElementById("vA"),B=document.getElementById("vB");
+ for(let i=0;i<50;i++){const x=55+(i%10)*21,y=95+Math.floor(i/10)*34;el("rect",{x:x,y:y,width:14,height:14,rx:2,fill:"#0B5563"},A)}
+ for(let i=0;i<200;i++){const x=362+(i%20)*17.5,y=72+Math.floor(i/20)*38;el("rect",{x:x,y:y,width:11,height:11,rx:2,fill:"#0B5563"},B)}
+})();
+
+/* ---------- Household numbering schematic ---------- */
+(function(){const s=document.getElementById("hhsvg");
+ const start=0.2249,iv=1.3181,sel=new Set();for(let k=0;k<200;k++){const v=Math.ceil(start+k*iv);if(v<=53)sel.add(v)}
+ // lanes
+ [[110],[270],[430]].forEach(([y])=>el("rect",{x:30,y:y-12,width:740,height:24,rx:12,fill:"#E3E8E9"},s));
+ el("rect",{x:746,y:98,width:24,height:184,rx:12,fill:"#E3E8E9"},s);el("rect",{x:30,y:258,width:24,height:184,rx:12,fill:"#E3E8E9"},s);
+ el("text",{x:30,y:40,"font-size":20,"font-weight":700,fill:"#C0392B"},s,"Segment 3 (schematic) · 53 households");
+ const pos=[];const rows=[{y:110,n:18,dir:1},{y:270,n:18,dir:-1},{y:430,n:17,dir:1}];
+ rows.forEach(r=>{for(let i=0;i<r.n;i++){const idx=r.dir>0?i:(r.n-1-i);const x=60+idx*39;const up=i%2===0;pos.push([x,r.y+(up?-48:22)])}});
+ // route
+ const route=el("path",{d:"M40,110 L758,110 L758,270 L42,270 L42,430 L760,430","fill":"none",stroke:"#E89B2C","stroke-width":5,"stroke-dasharray":"12 8","marker-end":"url(#arr)","data-s":"1"},s);
+ const defs=el("defs",{},s);const mk=el("marker",{id:"arr",viewBox:"0 0 10 10",refX:5,refY:5,markerWidth:5,markerHeight:5,orient:"auto"},defs);el("path",{d:"M0,0 L10,5 L0,10 z",fill:"#E89B2C"},mk);
+ const gH=el("g",{},s),gN=el("g",{"data-s":"2"},s),gA=el("g",{"data-s":"3"},s);
+ pos.forEach(([x,y],i)=>{const n=i+1;
+   el("rect",{x:x-15,y:y,width:30,height:26,rx:3,fill:"#fff",stroke:"#8A5A44","stroke-width":2.5},gH);
+   el("text",{x:x,y:y+19,"text-anchor":"middle","font-size":14,"font-weight":700,fill:"#1F2A30"},gN,n);
+   el("rect",{x:x-15,y:y,width:30,height:26,rx:3,fill:sel.has(n)?"#0B5563":"#D5DADB","fill-opacity":sel.has(n)?.85:.9},gA);
+   el("text",{x:x,y:y+19,"text-anchor":"middle","font-size":14,"font-weight":700,fill:sel.has(n)?"#fff":"#7A8A8F"},gA,n);
+ });
+ const lg=el("g",{"data-s":"3"},s);
+ el("rect",{x:40,y:490,width:22,height:20,rx:3,fill:"#0B5563"},lg);el("text",{x:70,y:506,"font-size":17,fill:"#1F2A30"},lg,"On List A: visit ("+sel.size+")");
+ el("rect",{x:300,y:490,width:22,height:20,rx:3,fill:"#D5DADB"},lg);el("text",{x:330,y:506,"font-size":17,fill:"#1F2A30"},lg,"Counted and passed");
+})();
+
+/* ---------- Kalapani ---------- */
+(function(){const s=document.getElementById("kalSvg");
+ const segs=[
+  {k:1,n:52,at:[430,700],p:[[95,20],[832,20],[832,1120],[95,1120]]},
+  {k:2,n:49,at:[1120,250],p:[[840,20],[1410,20],[1410,312],[1130,318],[1110,292],[850,328]]},
+  {k:3,n:50,at:[1180,820],p:[[850,328],[1110,292],[1130,318],[1410,312],[1410,20],[1595,20],[1595,1120],[840,1120]]}];
+ segs.forEach(o=>{const g=el("g",{"data-s":o.k},s);
+  el("polygon",{points:poly(o.p),fill:C[o.k],"fill-opacity":.26,stroke:C[o.k],"stroke-width":7},g);
+  el("circle",{cx:o.at[0],cy:o.at[1],r:62,fill:C[o.k],stroke:"#fff","stroke-width":7},g);
+  el("text",{x:o.at[0],y:o.at[1]+22,"text-anchor":"middle","font-size":64,"font-weight":700,fill:"#fff"},g,o.k);
+  el("text",{x:o.at[0],y:o.at[1]+108,"text-anchor":"middle","font-size":40,"font-weight":700,fill:C[o.k],class:"lbl"},g,o.n+" HH");});
+})();
+
+/* ---------- Nariyalkheda ---------- */
+(function(){const s=document.getElementById("narSvg");
+ const parts={A:[[20,70],[215,70],[215,178],[150,215],[20,230]],B:[[215,55],[555,55],[555,185],[380,192],[215,180]],
+  C:[[380,195],[555,195],[555,445],[470,445],[420,340],[360,282]],D:[[20,236],[192,236],[192,445],[20,445]],
+  E:[[195,215],[378,196],[358,284],[418,342],[468,445],[195,445]]};
+ const at={A:[110,150],B:[300,135],C:[430,252],D:[105,350],E:[300,330]};
+ const g1=el("g",{"data-s":"1"},s);
+ for(const k in parts){el("polygon",{points:poly(parts[k]),fill:"none",stroke:"#0B5563","stroke-width":3,"stroke-dasharray":"8 5"},g1);
+   el("circle",{cx:at[k][0],cy:at[k][1],r:19,fill:"#0B5563",stroke:"#fff","stroke-width":3},g1);
+   el("text",{x:at[k][0],y:at[k][1]+8,"text-anchor":"middle","font-size":22,"font-weight":700,fill:"#fff"},g1,k)}
+ const g2=el("g",{"data-s":"2"},s);
+ const m=el("mask",{id:"mC"},s);el("rect",{x:0,y:0,width:562,height:470,fill:"#fff"},m);el("polygon",{points:poly(parts.C),fill:"#000"},m);
+ el("rect",{x:0,y:0,width:562,height:470,fill:"#1F2A30","fill-opacity":.5,mask:"url(#mC)"},g2);
+ el("polygon",{points:poly(parts.C),fill:"none",stroke:"#E89B2C","stroke-width":6},g2);
+ const g3=el("g",{"data-s":"3"},s);
+ el("rect",{x:395,y:150,width:150,height:34,rx:17,fill:"#fff",stroke:"#E89B2C","stroke-width":3},g3);
+ el("text",{x:470,y:174,"text-anchor":"middle","font-size":18,"font-weight":700,fill:"#1F2A30"},g3,"about 150 HH");
+ const g4=el("g",{"data-s":"4"},s);
+ const sub=[[[380,195],[555,195],[555,262],[398,282],[360,282]],[[398,282],[555,262],[555,352],[432,358],[418,342]],[[432,358],[555,352],[555,445],[470,445]]];
+ sub.forEach((p,i)=>{el("polygon",{points:poly(p),fill:C[i+1],"fill-opacity":.3,stroke:C[i+1],"stroke-width":3},g4)});
+ [[505,240],[505,315],[520,385]].forEach(([x,y],i)=>{el("circle",{cx:x,cy:y,r:15,fill:C[i+1],stroke:"#fff","stroke-width":3},g4);el("text",{x:x,y:y+7,"text-anchor":"middle","font-size":18,"font-weight":700,fill:"#fff"},g4,"C"+(i+1))});
+})();
+
+/* ---------- Bagroda practice ---------- */
+(function(){const s=document.getElementById("bagSvg");
+ const B={N:{n:22,seg:3,at:[880,105],p:[[150,30],[1560,30],[1560,172],[250,172],[200,250],[150,240]]},
+  D:{n:41,seg:1,at:[470,390],p:[[280,205],[660,205],[660,570],[280,570]]},
+  S:{n:8,seg:1,at:[700,760],p:[[280,600],[1500,600],[1500,965],[280,965]]},
+  V:{n:21,seg:2,at:[760,300],p:[[683,222],[897,222],[822,558],[688,560]]},
+  G:{n:25,seg:2,at:[1010,290],p:[[900,222],[1147,222],[1010,560],[825,560]]},
+  P:{n:12,seg:3,at:[1250,440],p:[[1152,222],[1382,222],[1302,560],[1013,560]]},
+  E:{n:8,seg:3,at:[1460,400],p:[[1388,222],[1560,222],[1560,560],[1306,560]]}};
+ const gA=el("g",{"data-s":"1"},s);
+ for(const k in B){const b=B[k];
+  el("polygon",{points:poly(b.p),fill:C[b.seg],"fill-opacity":.28,stroke:C[b.seg],"stroke-width":6},gA);
+  el("polygon",{points:poly(b.p),fill:"none",stroke:"#0B5563","stroke-width":4,"stroke-dasharray":"12 8"},s);}
+ for(const k in B){const b=B[k];
+  el("rect",{x:b.at[0]-58,y:b.at[1]-32,width:116,height:60,rx:30,fill:"#fff",stroke:"#0B5563","stroke-width":5},s);
+  el("text",{x:b.at[0],y:b.at[1]+12,"text-anchor":"middle","font-size":38,"font-weight":700,fill:"#0B5563"},s,b.n);}
+})();
+
+/* ---------- Lottery ---------- */
+(function(){const chits=[...document.querySelectorAll("#chits .chit")],out=document.getElementById("drawOut");let busy=false;
+ document.getElementById("drawBtn").addEventListener("click",e=>{e.stopPropagation();if(busy)return;busy=true;out.textContent="Mixing the slips…";let t=0;
+  const iv=setInterval(()=>{chits.forEach(c=>c.classList.remove("win"));chits[t%4].classList.add("win");t++},110);
+  setTimeout(()=>{clearInterval(iv);const r=Math.floor(Math.random()*4);chits.forEach(c=>c.classList.remove("win"));chits[r].classList.add("win");out.innerHTML="Slip <b>"+(r+1)+"</b> was drawn: survey segment "+(r+1)+".";busy=false},1500)})})();
+
+/* ---------- Deck engine ---------- */
+const slides=[...document.querySelectorAll(".slide")];let cur=0,step=0;
+const stage=document.getElementById("stage");
+function fit(){const s=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform=`scale(${s}) translate(-50%,-50%)`;stage.style.transformOrigin="0 0";stage.style.left="50%";stage.style.top="50%";stage.style.transform=`translate(-50%,-50%) scale(${s})`;stage.style.transformOrigin="center center"}
+addEventListener("resize",fit);fit();
+function maxStep(i){let m=0;slides[i].querySelectorAll("[data-s]").forEach(e=>m=Math.max(m,+e.getAttribute("data-s")));return m}
+function render(){slides.forEach((s,i)=>s.classList.toggle("active",i===cur));
+ slides[cur].querySelectorAll("[data-s]").forEach(e=>e.classList.toggle("on",+e.getAttribute("data-s")<=step));
+ document.getElementById("pg").textContent=(cur+1)+" / "+slides.length;
+ document.getElementById("prog").style.width=((cur+1)/slides.length*100)+"%";
+ const n=slides[cur].querySelector("aside.notes");document.getElementById("notesTxt").textContent=n?n.textContent.trim():"";
+ history.replaceState(null,"","#"+(cur+1))}
+function next(){if(step<maxStep(cur)){step++}else if(cur<slides.length-1){cur++;step=0}render()}
+function prev(){if(step>0){step--}else if(cur>0){cur--;step=maxStep(cur)}render()}
+addEventListener("keydown",e=>{if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){e.preventDefault();next()}else if(["ArrowLeft","PageUp","Backspace"].includes(e.key)){e.preventDefault();prev()}else if(e.key==="n"||e.key==="N"){document.getElementById("notes").classList.toggle("show")}else if(e.key==="Home"){cur=0;step=0;render()}else if(e.key==="End"){cur=slides.length-1;step=maxStep(cur);render()}});
+stage.addEventListener("click",e=>{if(e.target.closest("button,a"))return;const r=stage.getBoundingClientRect();if(e.clientX<r.left+r.width*0.3)prev();else next()});
+document.getElementById("bPrev").onclick=prev;document.getElementById("bNext").onclick=next;
+let tx=null;addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
+addEventListener("touchend",e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){d<0?next():prev()}tx=null},{passive:true});
+const h=parseInt(location.hash.slice(1));if(h>=1&&h<=slides.length){cur=h-1}
+render();
+</script>
+</body>
+</html>
